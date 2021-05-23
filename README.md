@@ -17,4 +17,10 @@ Alternatively you can run application using your desired IDE.
 I have also deployed the aapplication on AWS EC2 instance:
 -> The url to access the swagger document is http://ec2-13-245-21-79.af-south-1.compute.amazonaws.com:8080/swagger-ui.html#/
 
+How to access test data:
+-> When the application start up, the test data is saved in database in the main Application class.
+-> for easy access to test test you can either use the mongoDB queries or the following services.
+  -> /api/v1/product/getAllCustomers to view all the customers that were inserted in the database.
+  -> /api/v1/product/getAllProducts to view all the products that were inserted in the database.
+
 
