@@ -9,8 +9,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerDto {
-    String customerId;
-    String customerName;
+    private String customerId;
+    private String customerName;
+    private CustomerActiveDaysDto customerActiveDaysDto;
+
 }

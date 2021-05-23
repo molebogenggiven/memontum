@@ -13,6 +13,6 @@ import javax.persistence.Id;
 public class CustomerActiveDaysModel {
 
     @ApiModelProperty(notes = "The product cost", required = true)
-    Long points;
+    private Long points;
 
 }

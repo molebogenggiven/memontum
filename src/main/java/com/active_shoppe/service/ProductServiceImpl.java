@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
             throw  new BusinessException("You won't be able to buy because your points is insufficient", HttpStatus.NOT_ACCEPTABLE);
         }
         if (productsCodeDto.getProductCode().isEmpty()){
-            throw new BusinessException("Please product your desired product code ", HttpStatus.BAD_REQUEST);
+            throw new BusinessException("Please provide your desired product code ", HttpStatus.BAD_REQUEST);
         }
         List<ProductModel> productModels = productRepository.findByProductCodeIn(productsCodeDto.getProductCode());
         if (productModels.size() != productsCodeDto.getProductCode().size()){
@@ -79,5 +79,22 @@ public class ProductServiceImpl implements ProductService {
                 .builder()
                 .message("OK")
                 .build();
+    }
+
+    @Override
+    public List<CustomerDto> getAllCustomers() {
+        List<CustomerModel> customerModelList = customerRepository.findAll();
+
+        return customerModelList.stream()
+                .map(customerModel -> {
+                    CustomerActiveDaysDto customerActiveDaysDto = CustomerActiveDaysDto.builder()
+                            .points(customerModel.getCustomerActiveDaysModel().getPoints())
+                            .build();
+                    return CustomerDto.builder()
+                            .customerId(customerModel.getId())
+                            .customerName(customerModel.getCustomerName())
+                            .customerActiveDaysDto(customerActiveDaysDto)
+                            .build();
+                }).collect(Collectors.toList());
     }
 }

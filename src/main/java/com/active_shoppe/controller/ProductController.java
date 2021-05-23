@@ -1,5 +1,6 @@
 package com.active_shoppe.controller;
 
+import com.active_shoppe.dto.CustomerDto;
 import com.active_shoppe.dto.ProductDto;
 import com.active_shoppe.dto.ProductsCodeDto;
 import com.active_shoppe.dto.ResponseDto;
@@ -30,6 +31,11 @@ public class ProductController {
     @ApiOperation(value = "View a list of available products", response = ResponseEntity.class)
     public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
+    }
+    @GetMapping("/getAllCustomers")
+    @ApiOperation(value = "View a list of customers", response = ResponseEntity.class)
+    public List<CustomerDto> getAllCustomers() {
+        return productService.getAllCustomers();
     }
 
     @PostMapping("/buyProducts/{customerId}")
